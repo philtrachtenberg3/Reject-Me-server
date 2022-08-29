@@ -59,8 +59,14 @@ router.post('/create-my-plan/questionnaire/:planId', async (req, res, next) => {
 
 })
 
+router.get('/my-plans', (req, res, next) => {
+    Plan.find()
+    .then((myPlans) => res.status(200).json(myPlans))
+    .catch((err) => res.json(err))
+})
 
-router.get('/my-plan/:planId', (req, res, next) => {
+
+router.get('/my-plans/:planId', (req, res, next) => {
     const {planId} = req.params;
     Plan.findById(planId)
     .populate('challenges')
@@ -68,7 +74,7 @@ router.get('/my-plan/:planId', (req, res, next) => {
     .catch((err) => res.json(err))
 })
 
-router.put('/my-plan/:challengeId', (req, res, next) => {
+router.put('/my-plans/:challengeId', (req, res, next) => {
     const {challengeId} = req.params;
     const {title, day, date, video, journalEntry, comments, isCompleted, wasRejected} = req.body;
 
