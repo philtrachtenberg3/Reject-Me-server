@@ -3,6 +3,7 @@ const Idea = require('../models/Idea.model')
 const Challenge = require('../models/Challenge.model')
 const Plan = require("../models/Plan.model")
 const Questionnaire = require("../models/Questionnaire.model")
+const fileUploader = require("../config/cloudinary.config");
 
 router.post('/create-my-plan', async (_req, res, next) => {
     try {
