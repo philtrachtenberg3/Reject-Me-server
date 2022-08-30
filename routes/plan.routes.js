@@ -96,6 +96,14 @@ router.put('/my-plans/:planId/:challengeId', (req, res, next) => {
     .then((updatedChallenge) => res.status(200).json(updatedChallenge))
 })
 
+router.delete('/my-plans/:planId/delete', (req, res, next) => {
+    const {planId} = req.params;
+
+    Plan.findByIdAndDelete(planId)
+    .then(() => res.redirect('/plan/my-plans'))
+    .catch((err) => console.log(err))
+})
+
 
 
 
