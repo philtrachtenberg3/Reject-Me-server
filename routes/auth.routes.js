@@ -119,10 +119,10 @@ router.post("/login", (req, res, next) => {
         }
         
         // Destructuring what we want from the user
-        const {_id, username} = user;
+        const {_id, username, email, password, profilePicture} = user;
 
         // Creating the payload with the properties we want to save on the token
-        const payload = {_id, username};
+        const payload = {_id, username, email, password, profilePicture};
 
         // Creating the token
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {

@@ -80,14 +80,23 @@ router.get('/my-plans/:planId/:challengeId', (req, res, next) => {
     const {planId, challengeId} = req.params;
     const {title, day, date, video, journalEntry, comments, isCompleted, wasRejected} = req.body;
 
-    Challenge.findByIdAndUpdate(challengeId, {title, day, date, video, journalEntry, comments, isCompleted, wasRejected})
-    .then((updatedChallenge) => res.status(200).json(updatedChallenge))
+    Challenge.findById(challengeId)
+    .then((challenge) => res.status(200).json(challenge))
     .catch((err) => console.log(err))
 
 
 })
 
-router.put('/my-plans/:planId/:challengeId', (req, res, next) => {
+router.put('/my-plans/:planId/:challengeId/', (req, res, next) => {
+    const {planId, challengeId} = req.params;
+    const {title, day, date, video, journalEntry, comments, isCompleted, wasRejected} = req.body;
+
+    
+    Challenge.findByIdAndUpdate(challengeId, {title, day, date, video, journalEntry, comments, isCompleted, wasRejected})
+    .then((updatedChallenge) => res.status(200).json(updatedChallenge))
+})
+
+router.put('/my-plans/:planId/:challengeId/edit', (req, res, next) => {
     const {planId, challengeId} = req.params;
     const {title, day, date, video, journalEntry, comments, isCompleted, wasRejected} = req.body;
 
