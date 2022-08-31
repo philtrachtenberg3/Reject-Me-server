@@ -7,7 +7,7 @@ router.get("/", (req, res, next) => {
   res.json("All good in here");
 });
 
-router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
+router.post("/upload", fileUploader.single("video"), (req, res, next) => {
   // console.log("file is: ", req.file)
  
   if (!req.file) {

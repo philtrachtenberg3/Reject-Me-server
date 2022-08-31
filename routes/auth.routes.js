@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const {isAuthenticated} = require('../middleware/jwt.middleware')
+const fileUploader = require("../config/cloudinary.config");
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
@@ -11,7 +12,6 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
-const fileUploader = require("../config/cloudinary.config");
 
 router.get("/verify", isAuthenticated, (req, res) => {
   console.log("the token: (or not): ",req.payload)
