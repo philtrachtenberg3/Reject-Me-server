@@ -100,7 +100,7 @@ router.delete('/my-plans/:planId/delete', (req, res, next) => {
     const {planId} = req.params;
 
     Plan.findByIdAndDelete(planId)
-    .then(() => res.redirect('/plan/my-plans'))
+    .then((plan) => res.status(200).json(plan))
     .catch((err) => console.log(err))
 })
 

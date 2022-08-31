@@ -5,6 +5,13 @@ const fileUploader = require("../config/cloudinary.config");
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.json("All good in here");
+
+  axios.get(`https://zenquotes.io/api/random`)
+  .then((response) => {
+    res.status(200).json(response.data);
+    console.log(response.data)
+  })
+  .catch((err) = console.log(err))
 });
 
 router.post("/upload", fileUploader.single("video"), (req, res, next) => {
