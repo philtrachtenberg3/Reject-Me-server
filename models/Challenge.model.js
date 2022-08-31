@@ -6,7 +6,7 @@ const challengeSchema = new Schema(
     title: { type: String, required: true },
     day: {type: Number, required: true},
     date: {type: Date, default: Date.now},
-    video: {type: String},
+    video: {type: String, default: "https://thumbs.gfycat.com/SharpMagnificentGreathornedowl-size_restricted.gif"},
     journalEntry: {type: String},
     comments: {type: Schema.Types.ObjectId, ref: 'Comments'},
     isCompleted: {type: Boolean},

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Idea = require('../models/Idea.model')
 const Challenge = require('../models/Challenge.model')
 const Plan = require("../models/Plan.model")
+const User = require("../models/User.model")
 const Questionnaire = require("../models/Questionnaire.model")
 const fileUploader = require("../config/cloudinary.config");
 
@@ -20,8 +21,9 @@ router.post('/create-my-plan', async (_req, res, next) => {
             // bring in ideas in order
             let challenge = await Challenge.create({title: ideas[i].idea, day: i+1})
             challengeArray[i] = challenge._id
-          
         }
+
+        /* let user = await User.find() */
 
         const plan = await Plan.create({challenges: challengeArray})
         res.status(201).json(plan)
