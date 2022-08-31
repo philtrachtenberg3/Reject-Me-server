@@ -8,7 +8,8 @@ const userSchema = new Schema(
     profilePicture: {type: String},
     challenges: {type: Schema.Types.ObjectId, ref: 'Challenge'},
     comments: {type: Schema.Types.ObjectId, ref: 'Comments'},
-    questionnaire: {type: Schema.Types.ObjectId, ref: 'Questionnaire'}
+    questionnaire: {type: Schema.Types.ObjectId, ref: 'Questionnaire'},
+    plans: {type: Schema.Types.ObjectId, ref: 'Plan'}
   },
   { timestamps: true }
 );
