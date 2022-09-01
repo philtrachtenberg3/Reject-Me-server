@@ -4,9 +4,10 @@ const Challenge = require('../models/Challenge.model')
 const Plan = require("../models/Plan.model")
 const User = require("../models/User.model")
 const Questionnaire = require("../models/Questionnaire.model")
+const {isAuthenticated} = require("../middleware/jwt.middleware")
 const fileUploader = require("../config/cloudinary.config");
 
-router.post('/create-my-plan', async (_req, res, next) => {
+router.post('/create-my-plan', isAuthenticated, async (req, res, next) => {
     try {
         let ideas = await Idea.find();
 
@@ -23,9 +24,10 @@ router.post('/create-my-plan', async (_req, res, next) => {
             challengeArray[i] = challenge._id
         }
 
-        /* let user = await User.find() */
-
+        
         const plan = await Plan.create({challenges: challengeArray})
+        const user = await User.findByIdAndUpdate(req.payload._id, {$push: {plans: plan._id}})
+        
         res.status(201).json(plan)
     } catch (error) {
         next(error)
@@ -62,9 +64,10 @@ router.post('/create-my-plan/questionnaire/:planId', async (req, res, next) => {
 
 })
 
-router.get('/my-plans', (req, res, next) => {
-    Plan.find()
-    .then((myPlans) => res.status(200).json(myPlans))
+router.get('/my-plans', isAuthenticated, (req, res, next) => {
+    User.findById(req.payload._id)
+    .populate('plans')
+    .then((user) => res.status(200).json(user.plans))
     .catch((err) => res.json(err))
 })
 

@@ -9,7 +9,7 @@ const userSchema = new Schema(
     challenges: {type: Schema.Types.ObjectId, ref: 'Challenge'},
     comments: {type: Schema.Types.ObjectId, ref: 'Comments'},
     questionnaire: {type: Schema.Types.ObjectId, ref: 'Questionnaire'},
-    plans: {type: Schema.Types.ObjectId, ref: 'Plan'}
+    plans: [{type: Schema.Types.ObjectId, ref: 'Plan'}]
   },
   { timestamps: true }
 );
